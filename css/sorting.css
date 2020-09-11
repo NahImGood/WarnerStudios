@@ -1,9 +1,11 @@
-
+/* Styling the buttons and small divs */
+/* All sections seperated by a grey line */
+/* Left Section */
 .left {
   width: 25%;
   float:left;
 }
-
+/*  Middle Section */
 .middle {
   width: 20%;
   float:left;
@@ -11,7 +13,7 @@
   border-left: 1px solid grey;
   border-right: 1px solid grey;
 }
-
+/*  Right Section */
 .right {
   width: 50%;
   float:right;
