@@ -1,0 +1,18 @@
+
+.left {
+  width: 25%;
+  float:left;
+}
+
+.middle {
+  width: 20%;
+  float:left;
+  padding: 10px;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+.right {
+  width: 50%;
+  float:right;
+}

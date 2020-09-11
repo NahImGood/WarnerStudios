@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<title>Warner Studios</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/w3-css.css">
+<link rel="stylesheet" href="css/sorting.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="Chart.js"></script>
+<script src="java/quick-sort.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+  height: 100%;
+  color: #777;
+  line-height: 1.8;
+}
+
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="desktopNavBarr">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="home.html" class="w3-bar-item w3-button">HOME</a>
+    <a href="http://wildfirelocator.com/"  class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-bar-chart"></i> FIRE MAP</a>
+    </a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="mobileNavBar" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="http://wildfirelocator.com/" class="w3-bar-item w3-button"><i class="fa fa-area-chart"></i> FIRE MAP</a>  </div>
+</div>
+
+<!-- About the Sort -->
+<div class="w3-content w3-container w3-padding-64" id="about">
+  <h3 class="w3-center">ABOUT THE SORT</h3>
+</div>
+
+
+<canvas id="myChart" width="400" height="90"></canvas>
+<br>
+<div class='w3-content'>
+  <div class='left inlineDiv'>
+    <div class="slidecontainer">
+      <input type="range" min="1" max="75" value="40" class="slider" id="myRange">
+      <p>Array Size: <span id="arrayValue"></span></p>
+    </div>
+    <div class="slidecontainer">
+      <input type="range" min="1" max="400" value="250" class="slider" id="mySpeed">
+      <p>Speed: <span id="speedValue"></span> (Smaller is faster)</p>
+    </div>
+  </div>
+  <div class="middle">
+    <p>Select a Graph Type</p>
+    <br>
+    <button onclick='updateGraphType(this.value)' value='bar'>Bar</button>
+    <button onclick='updateGraphType(this.value)' value='line'>Line</button>
+    <button onclick='updateGraphType(this.value)' value='radar'>Radar</button>
+    <button onclick='updateGraphType(this.value)' value='polarArea'>Polar Area</button>
+  </div>
+  <div class="right">
+    <div>
+      <button onclick="shuffleData()">Randomize Array</button>
+      <button onclick="hardStop()">Stop Sorting</button>
+    </div>
+    <br>
+    <div>
+      <button onclick="bubbleSort()">Bubble Sort Array</button>
+      <button onclick="selectionSort()">Selection Sort Array</button>
+      <button onclick="callQuickSort()">Quick Sort Array</button>
+      <p>More Comming Sooner</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Slider for Speed
+  var speedSlider = document.getElementById("mySpeed");
+  var speedOutPut = document.getElementById("speedValue");
+  speedOutPut.innerHTML = speedSlider.value; // Sets the inital speed value
+  // Slider for adjusting size of array
+  var sizeSlider = document.getElementById("myRange");
+  var sizeOutput = document.getElementById("arrayValue");
+  sizeOutput.innerHTML = sizeSlider.value; // Sets the intial array value
+
+  sizeSlider.oninput = function() {
+    sizeOutput.innerHTML = this.value;
+  }
+
+  sizeSlider.onchange = async function() {
+    updateChartSize(this.value);
+  }
+
+  speedSlider.oninput = function() {
+    speedOutPut.innerHTML = this.value;
+  }
+
+  speedSlider.onchange = async function() {
+    sortSpeed = this.value;
+  }
+
+
+  window.onscroll = function() {navPullDownOnScroll()};
+  function navPullDownOnScroll() {
+      var navbar = document.getElementById("desktopNavBarr");
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+          navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+      } else {
+          navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+      }
+  }
+
+  // Used to toggle the menu on small screens when clicking on the menu button
+  function toggleFunction() {
+      var x = document.getElementById("mobileNavBar");
+      if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+      } else {
+          x.className = x.className.replace(" w3-show", "");
+      }
+  }
+
+</script>
+</body>
+</html>
