@@ -1,0 +1,10 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/oqa18x7c5rhm/public_html/
+    - /bin/cp home.html $DEPLOYPATH
+    - /bin/cp sorting-is-fun.html $DEPLOYPATH
+    - /bin/cp -R css $DEPLOYPATH
+    - /bin/cp -R js $DEPLOYPATH
+    - /bin/cp -R pics $DEPLOYPATH
+    - /bin/cp -R heatmap $DEPLOYPATH
