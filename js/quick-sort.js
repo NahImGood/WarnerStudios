@@ -15,12 +15,11 @@ $( document ).ready(function() {
   buildChart(array, arraySize);
 });
 
-// Bubble Sort My GUY //
+// Bubble Sort //
 // Classic bubble sort but with small modifications to visually show the updates
 async function bubbleSort(){
-  sortRunning = true;
-  stopSort = false;
-  console.log("Bubble Sort");
+  sortRunning = true; // for terminating sort method when its running
+  stopSort = false;   // set stopSort init value
   let len = array.length;
     for (let i = 0; i < len; i++) {
         for (let j = 0; j < len; j++) {
@@ -39,11 +38,10 @@ async function bubbleSort(){
     }
 }
 
-// Selection Sort My Dude //
+// Selection Sort //
 // just as bad as the bubble sort but another method of sorting
 async function selectionSort(){
-  sortRunning = true;
-  console.log("Selection Sort");
+  sortRunning = true; // for terminating sort method when its running
   let len = array.length;
     for (let i = 0; i < len; i++) {
         let min = i;
@@ -58,7 +56,7 @@ async function selectionSort(){
             updateChartValue(i, array[min]);
             array[min] = tmp;
             updateChartValue(min, tmp);
-            if(stopSort){stopSort = false; return;}
+            if(stopSort) {stopSort = false; return;}
             await sleep(sortSpeed);
         }
     }
@@ -110,6 +108,7 @@ function callQuickSort(){
   var right = array.length - 1;
   quickSort(array, left, right);
 }
+
 // when the stop button is pressed it sets the stopsort to true
 // but only if there is a current sort running. Otherwise you will
 // stop the sort instantly when the next sort is selected
@@ -119,30 +118,36 @@ function stopSorting(){
   }
 }
 
+// Forces the sort method to hault
 function hardStop(){
   stopSort = true;
 }
+
 // used to update values on the chart js in all sorting methods
 function updateChartValue(index, number) {
     currentChart.data.datasets[0].data[index] = number;
     currentChart.data.labels[index] = number;
     currentChart.update();
 }
+
 // Will update the array in the chart
 async function updateChartSize(size){
   array = createArray(size);
   buildChart(array, arraySize);
 }
+
 // intially creates the array and then shuffles it.
 function createArray(arraySize){
   for (var array=[],i=0;i<arraySize;++i) array[i]=i;
   array = shuffleArray(array);
   return array;
 }
+
 // shuffles the array to random, Used when clicking on the button to shuffle data
 function shuffleData(){
   buildChart(shuffleArray(array), arraySize);
 }
+
 // shuffles the array to random locations
 function shuffleArray(array){
   var tmp, current, top = array.length;
@@ -155,12 +160,14 @@ function shuffleArray(array){
   console.log(array);
   return array;
 }
+
 // builds a new chart when the chart button type is selected from the html buttons
 // each buttons passes a string value for the type of chart
 function updateGraphType(newType){
   graphType = newType;
   buildChart(array, arraySize);
 }
+
 // function for building charts
 async function buildChart(data, arraySize){
     hardStop(); //  used to stop the chart form sorting.
@@ -209,6 +216,7 @@ async function buildChart(data, arraySize){
     stopSort = false;
   }
 }
+
 // creates the color for the charts
 function toColor(num) {
     num >>>= 0;
@@ -218,6 +226,7 @@ function toColor(num) {
         a = ( (num & 0xFF000000) >>> 24 ) / 255 ;
     return "rgba(" + [r, g, b, a].join(",") + ")";
 }
+
 // pauses so the chart can update and controll the speed
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
